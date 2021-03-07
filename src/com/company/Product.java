@@ -84,12 +84,12 @@ public class Product {
 
 
 
-    public static void addNewP(Product project){
+    public static void addNewP(Product p){
         Main m =new Main();
         m.getCon(); //connecting with database
         try {
             //make request
-            PreparedStatement ps=m.con.prepareStatement("insert into Product(product_ID,product_category,product_name,price,weight,shelf_life,manufacturer)" +
+            PreparedStatement ps=m.con.prepareStatement("insert into ANVAR(product_ID,product_category,product_name,price,weight,shelf_life,manufacturer)" +
                     "values(?,?,?,?,?,?,?)");
             //add values
             ps.setInt(1,p.product_ID);
@@ -105,17 +105,45 @@ public class Product {
             e.printStackTrace();
         }
     }
-    //method to delete projects by id
-    public static void deleteProject(int projectId){
+    //method to delete product by id
+    public static void deleteProduct(int product_ID){
         Main m =new Main();
         m.getCon(); //get connection
         try{
-            PreparedStatement ps=m.con.prepareStatement("delete from Project where project_id=?");
-            ps.setInt(1,projectId);
+            PreparedStatement ps=m.con.prepareStatement("delete from ANVAR where product_ID=?");
+            ps.setInt(1,product_ID);
             ps.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+    public static void productInfo(){ //especially here data from "Company" table
+        Main m =new Main();
+        m.getCon();
+        try {
+            //make request to database
+            PreparedStatement preparedStatement=m.con.prepareStatement("select *from ANVAR");
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()){
+                //get data from all columns
+                int product_ID=resultSet.getInt("product_ID");
+                String product_category=resultSet.getString("product_category");
+                String product_name=resultSet.getString("product_name");
+                String manufacturer=resultSet.getString("manufacturer");
+                int price=resultSet.getInt("price");
+                int weight=resultSet.getInt("weight");
+                int shelf_life=resultSet.getInt("shelf_life");
+                System.out.println("product_ID" + ":"+product_ID + ", " + "product_category" + ":" + product_category
+                        + ", " + "product_name" +  ":" + product_name + ", " + "manufacturer" + ":" + manufacturer + ", " + "price" + ":" + price +", " + "weight" + ":"+ weight
+                        + ", " + "shelf_life" + ":" + shelf_life);
+                preparedStatement.close();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 
 }
+//product_ID,product_category,product_name,price,weight,shelf_life,manufacturer
