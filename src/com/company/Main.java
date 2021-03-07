@@ -98,10 +98,10 @@ public class Main {
                     System.out.println("Enter salary: ");
                     int salary= scan.nextInt();
                     scan.nextLine();
-                    System.out.println("Enter position: ");
+                    System.out.println("Enter Job name: ");
                     String jobName= scan.nextLine();
                     Employee employees = new Employee(id, name, surname, address,jobName,salary);
-                    System.out.println("Values was added...");
+                    System.out.println("Values were added...");
                     employees.addNew(employees);
                 }else if(option1==3){
                     System.out.println("Enter id for delete: ");

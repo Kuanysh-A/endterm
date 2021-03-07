@@ -94,7 +94,7 @@ public class Employee extends Job {
         m.getCon();//connecting with database
         try {
             //make request to database
-            PreparedStatement preparedStatement=m.con.prepareStatement("select *from Employees");
+            PreparedStatement preparedStatement=m.con.prepareStatement("select *from Employee");
             ResultSet resultSet=preparedStatement.executeQuery();
             while (resultSet.next()){
                 //get data from column
@@ -102,7 +102,7 @@ public class Employee extends Job {
                 String employeeName=resultSet.getString("employee_name");
                 String surname=resultSet.getString("surname");
                 String address=resultSet.getString("address");
-                String jobName=resultSet.getString("job_name");
+                String jobName=resultSet.getString("jobName");
                 int salary=resultSet.getInt("salary");
 
                 System.out.println("name" + ":" + employeeName
@@ -163,7 +163,7 @@ public class Employee extends Job {
         m.getCon(); //connecting with database
         try {
             //make request
-            PreparedStatement ps = m.con.prepareStatement("delete from Employees where employee_id=?");
+            PreparedStatement ps = m.con.prepareStatement("delete from Employee where employee_id=?");
             //add value
             ps.setInt(1,employeeId);
             //execute query
