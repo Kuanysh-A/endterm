@@ -92,13 +92,13 @@ public class Product {
             PreparedStatement ps=m.con.prepareStatement("insert into Product(product_ID,product_category,product_name,price,weight,shelf_life,manufacturer)" +
                     "values(?,?,?,?,?,?,?)");
             //add values
-            ps.setInt(1,project.product_ID);
-            ps.setString(2,project.product_category);
-            ps.setString(3,project.product_name);
-            ps.setInt(4,project.price);
-            ps.setInt(5,project.weight);
-            ps.setInt(6,project.shelf_life);
-            ps.setString(7,project.manufacturer);
+            ps.setInt(1,p.product_ID);
+            ps.setString(2,p.product_category);
+            ps.setString(3,p.product_name);
+            ps.setInt(4,p.price);
+            ps.setInt(5,p.weight);
+            ps.setInt(6,p.shelf_life);
+            ps.setString(7,p.manufacturer);
             ps.executeUpdate();
             ps.close();
         }catch (Exception e){

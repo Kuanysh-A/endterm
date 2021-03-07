@@ -59,7 +59,7 @@ public class Main {
 
                     Product p=new Product(product_ID, product_category, product_name, weight,shelf_life,manufacturer);
                     p.addNewP(p);
-                    System.out.println("Values was added");
+                    System.out.println("Values were added");
 
                 }
                 else if(option1==3){
@@ -151,9 +151,7 @@ public class Main {
                 }
 
             }
-            else if (option == 4) {
 
-            }
         }
     }
 }
