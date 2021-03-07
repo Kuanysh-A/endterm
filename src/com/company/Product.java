@@ -82,4 +82,40 @@ public class Product {
         this.manufacturer = manufacturer;
     }
 
+
+
+    public static void addNewP(Product project){
+        Main m =new Main();
+        m.getCon(); //connecting with database
+        try {
+            //make request
+            PreparedStatement ps=m.con.prepareStatement("insert into Product(product_ID,product_category,product_name,price,weight,shelf_life,manufacturer)" +
+                    "values(?,?,?,?,?,?,?)");
+            //add values
+            ps.setInt(1,project.product_ID);
+            ps.setString(2,project.product_category);
+            ps.setString(3,project.product_name);
+            ps.setInt(4,project.price);
+            ps.setInt(5,project.weight);
+            ps.setInt(6,project.shelf_life);
+            ps.setString(7,project.manufacturer);
+            ps.executeUpdate();
+            ps.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    //method to delete projects by id
+    public static void deleteProject(int projectId){
+        Main m =new Main();
+        m.getCon(); //get connection
+        try{
+            PreparedStatement ps=m.con.prepareStatement("delete from Project where project_id=?");
+            ps.setInt(1,projectId);
+            ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
